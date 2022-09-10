@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
+// scss-docs-start gray-color-variables
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+// scss-docs-start color-variables
+$blue: #0d6efd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+
+// scss-docs-start theme-color-variables
+$primary: #11d3cc;
+$secondary: $gray-600;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: #fb66ba;
+$light: $gray-100;
+$dark: $gray-900;
+$body-bg: #0e1426;
+
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap/scss/variables.scss";
+@import "~bootstrap/scss/mixins.scss";
+@import "~bootstrap/scss/root.scss";
+
+$box-shadow: 0 0.5rem 1rem rgba($black, 0.15);
+$box-shadow-danger: 0 0 1rem rgba($danger, 0.75);
+$box-shadow-primary: 0 0 1rem rgba($primary, 0.55);
+$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075);
+$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175);
+$box-shadow-inset: inset 0 1px 2px rgba($black, 0.075);
+
+@import "~bootstrap/scss/_utilities";
+$utilities: (
+  "shadow": (
+    property: box-shadow,
+    class: shadow,
+    values: (
+      null: $box-shadow,
+      sm: $box-shadow-sm,
+      lg: $box-shadow-lg,
+      primary: $box-shadow-primary,
+      danger: $box-shadow-danger,
+      none: none,
+    ),
+  ),
+);
+
+@import "~bootstrap/scss/utilities/_api.scss";
+
+body {
+  font-family: "Fredoka One", cursive;
+//   background-color: #efefef;
+}
+
+.btn {
+  height: 5rem;
+  width: 5rem;
+  border: none;
+}

@@ -3,14 +3,12 @@ import Box from "./Box";
 
 export default function Board({ board, onClick }) {
   return (
-    <div className="board">
+    <div className="row justify-content-start">
       {board.map((value, idx) => {
         return (
-          <Box
-            value={value}
-            onClick={() => value === null && onClick(idx)}
-            key={idx}
-          />
+          <div className="col-4 g-3 align-self-end" key={idx}>
+            <Box value={value} onClick={() => value === null && onClick(idx)} />
+          </div>
         );
       })}
     </div>

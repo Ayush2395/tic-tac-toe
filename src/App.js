@@ -5,8 +5,9 @@ import Scoreboard from "./components/Scoreboard";
 export default function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xPlaying, setXPlaying] = useState(true);
-  const [scores, setScores] = useState({ xScores: 0, oScores: 0 });
+  const [scores, setScores] = useState({ xScore: 0, oScore: 0 });
   const [gameOver, setGameOver] = useState(false);
+  // const [message, setMessage] = useState({ error: false, msg: "" });
 
   const WINNING_CONDITION = [
     [0, 1, 2],
@@ -29,15 +30,16 @@ export default function App() {
     });
 
     const winner = checkWinner(updateBoard);
+
     if (winner) {
       if (winner === "O") {
-        let { oScores } = scores;
-        oScores += 1;
-        setScores({ ...scores, oScores });
+        let { oScore } = scores;
+        oScore += 1;
+        setScores({ ...scores, oScore });
       } else {
-        let { xScores } = scores;
-        xScores += 1;
-        setScores({ ...scores, xScores });
+        let { xScore } = scores;
+        xScore += 1;
+        setScores({ ...scores, xScore });
       }
     }
 
@@ -45,31 +47,43 @@ export default function App() {
     setXPlaying(!xPlaying);
   };
 
-  const resetBoard = () => {
+  const resetGame = () => {
     setGameOver(false);
+    setScores({ xScore: 0, oScore: 0 });
+    setXPlaying(true);
     setBoard(Array(9).fill(null));
   };
 
-  const checkWinner = (board) => {
+  const checkWinner = (box) => {
     for (let index = 0; index < WINNING_CONDITION.length; index++) {
       const [x, y, z] = WINNING_CONDITION[index];
-      if (board[x] && board[x] === board[y] && board[y] === board[z]) {
+      if (box[x] && box[x] === box[y] && box[y] === box[z]) {
         setGameOver(true);
-        return board[x];
+        return box[x];
       }
     }
   };
 
   return (
     <>
-      <Scoreboard score={scores} xPlaying={xPlaying} />
-      <Board
-        board={board}
-        onClick={gameOver ? resetBoard : handleChangeValue}
-      />
-      <button className="reset-btn" onClick={resetBoard}>
-        Reset
-      </button>
+      <div
+        className="container d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <div className="w-50">
+          <Scoreboard scores={scores} xPlaying={xPlaying} />
+          <Board
+            board={board}
+            onClick={gameOver ? resetGame : handleChangeValue}
+          />
+          <button
+            className="btn btn-primary w-100 my-4 fs-2"
+            onClick={resetGame}
+          >
+            Reset
+          </button>
+        </div>
+      </div>
     </>
   );
 }
